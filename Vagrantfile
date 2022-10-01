@@ -19,12 +19,16 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 6112, host: 6112
 
   # Set the static IP for the vagrant box
-  config.vm.network "private_network", ip: "192.168.50.4"
+  config.vm.network "private_network", ip: "192.168.56.4"
   
   # Configure the parameters for VirtualBox provider
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "4096"
-    vb.cpus = 4
+    vb.memory = "2048"
+    vb.cpus = 2
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
+  
+  config.vm.provision "file", source: "./kubernetes", destination: "$HOME/k8s" 
+  config.vm.provision "file", source: "./argocd", destination: "$HOME/argocd"
+  config.vm.provision "file", source: "./helm", destination: "$HOME/helm"  
   end
 end
