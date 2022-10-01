@@ -19,6 +19,18 @@ resources:
     memory: 128Mi
 containerPort: 3111
 livenessProbe:
+  initialDelaySeconds: 1
+  periodSeconds: 2
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 1
   path: /healthz
+  port: 3111
 readinessProbe:
+  initialDelaySeconds: 1
+  periodSeconds: 2
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 1
   path: /healthz
+  port: 3111

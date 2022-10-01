@@ -34,24 +34,24 @@ spec:
           ports:
           - containerPort: {{ .Values.containerPort }}
           readinessProbe:
-            initialDelaySeconds: 1
-            periodSeconds: 2
-            timeoutSeconds: 1
-            successThreshold: 1
-            failureThreshold: 1
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             httpGet:
               host:
               scheme: HTTP
               path: {{ .Values.readinessProbe.path }}
-              port: 3111
+              port: {{ .Values.readinessProbe.port }}
           livenessProbe:
-            initialDelaySeconds: 1
-            periodSeconds: 2
-            timeoutSeconds: 1
-            successThreshold: 1
-            failureThreshold: 1
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.livenessProbe.successThreshold }}
+            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
             httpGet:
               host:
               scheme: HTTP
               path: {{ .Values.livenessProbe.path }}
-              port: 3111
+              port: {{ .Values.livenessProbe.port }}
